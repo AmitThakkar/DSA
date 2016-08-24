@@ -1,7 +1,7 @@
 /**
  * Created by amitthakkar on 24/08/16.
  */
-let maximumCrosSubArray = (leftArray, rightArray) => {
+let maximumCrossSubArray = (leftArray, rightArray) => {
     let leftSum = 0, rightSum = 0, sum = 0, maxLeft, maxRight;
     for (let leftIndex = leftArray.length - 1; leftIndex >= 0; leftIndex--) {
         sum += leftArray[leftIndex];
@@ -28,7 +28,7 @@ let maximumSubArray = (array) => {
             let rightArray = array.slice(array.length / 2);
             let leftSum = maximumSubArray(leftArray);
             let rightSum = maximumSubArray(rightArray);
-            let crossSum = maximumCrosSubArray(leftArray, rightArray);
+            let crossSum = maximumCrossSubArray(leftArray, rightArray);
             if (leftSum[2] > rightSum[2] && leftSum[2] > crossSum[2]) {
                 return leftSum;
             } else if (rightSum[2] < leftSum[2] && rightSum[2] > crossSum[2]) {
