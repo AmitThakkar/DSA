@@ -28,9 +28,9 @@ let maximumSubArray = (array, minIndex, maxIndex) => {
             let leftSum = maximumSubArray(array, minIndex, mid);
             let rightSum = maximumSubArray(array, mid + 1, maxIndex);
             let crossSum = maximumCrossSubArray(array, minIndex, mid, maxIndex);
-            if (leftSum[2] > rightSum[2] && leftSum[2] > crossSum[2]) {
+            if (leftSum[2] >= rightSum[2] && leftSum[2] >= crossSum[2]) {
                 return leftSum;
-            } else if (rightSum[2] > leftSum[2] && rightSum[2] > crossSum[2]) {
+            } else if (rightSum[2] >= leftSum[2] && rightSum[2] >= crossSum[2]) {
                 return rightSum;
             } else {
                 return crossSum;
@@ -52,4 +52,6 @@ console.log(maximumSubArray(array, 0, array.length - 1)); // [4, 4, 5]
 array = [2, 4];
 console.log(maximumSubArray(array, 0, array.length - 1)); // [ 0, 1, 6 ]
 array = [-2, -4, 2, -1, 5];
+console.log(maximumSubArray(array, 0, array.length - 1)); // [ 2, 4, 6 ]
+array = [2, 5, -10, 5, -2, 4];
 console.log(maximumSubArray(array, 0, array.length - 1)); // [ 2, 4, 6 ]
