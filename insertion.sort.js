@@ -3,7 +3,7 @@
  */
 /*
  * Space Complexity O(1)
- * Time Complexity n*n while actual is n(n-1)/2
+ * Time Complexity O(n^2) while actual is n(n-1)/2
  * */
 let insertionSort = (array) => {
     for (let index = 1; index < array.length; index++) {
