@@ -55,3 +55,5 @@ array = [-2, -4, 2, -1, 5];
 console.log(maximumSubArray(array, 0, array.length - 1)); // [ 2, 4, 6 ]
 array = [2, 5, -10, 5, -2, 4];
 console.log(maximumSubArray(array, 0, array.length - 1)); // [ 2, 4, 6 ]
+array = [2, 5, -10];
+console.log(maximumSubArray(array, 0, array.length - 1)); // [ 2, 4, 6 ]
