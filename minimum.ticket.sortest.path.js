@@ -14,14 +14,18 @@
             let tempResult = {}, tempTotal = 0, lastDay;
             for (let tempDayIndex = 0; tempDayIndex < days.length; tempDayIndex++) {
                 if (tempDayIndex < dayIndex) {
-                    tempResult[tempDayIndex] = 2;
-                    tempTotal += 2;
+                    if(days[tempDayIndex] + 6 < days[dayIndex]) {
+                        tempTotal += tempResult[days[tempDayIndex]];
+                    } else {
+                        tempResult[days[tempDayIndex]] = 2;
+                        tempTotal += 2;
+                    }
                 } else if (!lastDay || days[tempDayIndex] - lastDay > 6) {
                     lastDay = days[tempDayIndex];
-                    tempResult[tempDayIndex] = 7;
+                    tempResult[days[tempDayIndex]] = 7;
                     tempTotal += 7;
                 } else {
-                    tempResult[tempDayIndex] = 0;
+                    tempResult[days[tempDayIndex]] = 0;
                 }
             }
             if (!total || total > tempTotal) {
@@ -42,6 +46,6 @@
     // console.log(getMinimumPayAmount(days)); // [ { '0': 2, '1': 2, '2': 2, '3': 7, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0, '9': 0 }, 13 ]
     // days = [1, 2];
     // console.log(getMinimumPayAmount(days)); // [ { '0': 2, '1': 2 }, 4 ]
-    // days = [1, 2, 3, 7, 8, 9, 10, 11, 12, 13, 16, 17];
-    // console.log(getMinimumPayAmount(days)); //
+    days = [1, 2, 3, 7, 8, 9, 10, 11, 12, 13, 16, 17];
+    console.log(getMinimumPayAmount(days)); //
 })();
