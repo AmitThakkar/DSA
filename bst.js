@@ -1,9 +1,6 @@
 /**
  * Created by amitthakkar on 24/08/16.
  */
-/**
- * Created by Amit Thakkar on 5/16/16.
- */
 (() => {
     "use strict";
     function Node(v) {
@@ -111,13 +108,10 @@
     };
 
     var tree = new Tree();
-    tree.insert(10);
-    tree.insert(7);
-    tree.insert(17);
-    tree.insert(3);
-    tree.insert(19);
-    tree.insert(9);
-    tree.insert(13);
+    let array = [10, 7, 17, 3, 19, 9, 13];
+    array.forEach((element) => {
+        tree.insert(element);
+    });
 
     console.log(tree.search(13) !== undefined);
     console.log(tree.search(4) !== undefined);
@@ -125,4 +119,4 @@
 
     console.log(tree.getPath(13));
     console.log(tree.getPath(9));
-})();_
+})();
