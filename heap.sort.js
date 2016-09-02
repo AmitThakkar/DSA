@@ -33,6 +33,7 @@
         n2.value = tempValue;
     };
 
+    // This is arrow function because we are not using this here
     let moveBigValueToUp = (node) => {
         while (node.parent) {
             if (node.parent.value < node.value) {
@@ -43,7 +44,8 @@
         }
     };
 
-    Tree.prototype.insert = (value) => {
+    // not arrow function so this will point to that object.
+    Tree.prototype.insert = function (value) {
         if (!this.root) {
             this.root = new Node(value, undefined, undefined, undefined);
         } else {
@@ -75,7 +77,8 @@
         }
     };
 
-    Tree.prototype.getNodes = () => {
+    // not arrow function so this will point to that object.
+    Tree.prototype.getNodes = function () {
         if (!this.root) {
             return 'Empty Tree';
         } else {
@@ -98,10 +101,17 @@
         }
     };
 
-    let array = [5, 4, 8];
-    let tree = new Tree();
-    array.forEach((element) => {
-        tree.insert(element);
-    });
-    console.log(tree.getNodes());
+    let array = [5, 4, 8, 3, 2, 1];
+    let result = [];
+    let length = array.length;
+    for (let index = 0; index < length; index++) {
+        let tree = new Tree();
+        array.forEach((element) => {
+            tree.insert(element);
+        });
+        array = tree.getNodes();
+        result.unshift(array[0]);
+        array.splice(0, 1);
+    }
+    console.log(result);
 })();

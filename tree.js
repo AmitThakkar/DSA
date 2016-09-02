@@ -17,6 +17,7 @@
         }
     }
 
+    // not arrow function so this will point to that object.
     Tree.prototype.insert = function (value) {
         if (!this.root) {
             this.root = new Node(value, undefined, undefined, undefined);
@@ -44,6 +45,7 @@
         }
     };
 
+    // not arrow function so this will point to that object.
     Tree.prototype.getNodes = function () {
         if (!this.root) {
             return 'Tree is not initialized yet!';
