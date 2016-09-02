@@ -9,43 +9,50 @@
         if (days.length >= 23) {
             return 'buy ticket for whole month worth $25';
         }
-        let result = {}, total;
-        for (let dayIndex = 0; dayIndex <= days.length; dayIndex++) {
-            let tempResult = {}, tempTotal = 0, lastDay;
-            for (let tempDayIndex = 0; tempDayIndex < days.length; tempDayIndex++) {
-                if (tempDayIndex < dayIndex) {
-                    if(days[tempDayIndex] + 6 < days[dayIndex]) {
-                        tempTotal += tempResult[days[tempDayIndex]];
-                    } else {
-                        tempResult[days[tempDayIndex]] = 2;
-                        tempTotal += 2;
+        let result = {};
+        while (days && days.length > 0) {
+            let weightage = {}, highestWeightNumber;
+            days.forEach(function (currentDay, dayIndex) {
+                if (!weightage[currentDay]) {
+                    weightage[currentDay] = 1;
+                }
+                for (let index = 1; index < 7 && index + dayIndex < days.length; index++) {
+                    if (currentDay + 6 >= days[dayIndex + index]) {
+                        weightage[currentDay]++
                     }
-                } else if (!lastDay || days[tempDayIndex] - lastDay > 6) {
-                    lastDay = days[tempDayIndex];
-                    tempResult[days[tempDayIndex]] = 7;
-                    tempTotal += 7;
-                } else {
-                    tempResult[days[tempDayIndex]] = 0;
+                }
+                if (!highestWeightNumber || weightage[currentDay] > weightage[highestWeightNumber]) {
+                    highestWeightNumber = currentDay;
+                }
+            });
+            if (highestWeightNumber && weightage[highestWeightNumber] > 3) {
+                result[highestWeightNumber] = 7;
+                for (let index = 0; index < 7; index++) {
+                    delete weightage[highestWeightNumber + index];
+                }
+            } else {
+                for (let lowWeightNumber in weightage) {
+                    result[lowWeightNumber] = 2;
+                    delete  weightage[lowWeightNumber];
                 }
             }
-            if (!total || total > tempTotal) {
-                total = tempTotal;
-                result = tempResult;
-            }
+            days = Object.keys(weightage).map(Number);
         }
-        return [result, total];
+        return result;
     };
 
     let days;
-    // console.log(getMinimumPayAmount(days)); // Please Provide valid Array of days
-    // days = [];
-    // console.log(getMinimumPayAmount(days)); // Please Provide valid Array of days
-    // days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-    // console.log(getMinimumPayAmount(days)); // buy ticket for whole month worth $25
-    // days = [1, 2, 3, 7, 8, 9, 10, 11, 12, 13];
-    // console.log(getMinimumPayAmount(days)); // [ { '0': 2, '1': 2, '2': 2, '3': 7, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0, '9': 0 }, 13 ]
-    // days = [1, 2];
-    // console.log(getMinimumPayAmount(days)); // [ { '0': 2, '1': 2 }, 4 ]
+    console.log(getMinimumPayAmount(days)); // Please Provide valid Array of days
+    days = [];
+    console.log(getMinimumPayAmount(days)); // Please Provide valid Array of days
+    days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+    console.log(getMinimumPayAmount(days)); // buy ticket for whole month worth $25
+    days = [1, 2, 3, 7, 8, 9, 10, 11, 12, 13];
+    console.log(getMinimumPayAmount(days)); // { '1': 2, '2': 2, '3': 2, '7': 7 }
+    days = [1, 2];
+    console.log(getMinimumPayAmount(days)); // { '1': 2, '2': 2 }
     days = [1, 2, 3, 7, 8, 9, 10, 11, 12, 13, 16, 17];
-    console.log(getMinimumPayAmount(days)); //
+    console.log(getMinimumPayAmount(days)); // { '1': 2, '2': 2, '3': 2, '7': 7, '16': 2, '17': 2 }
+    days = [1, 2, 3, 7, 8, 9, 10, 11, 12, 13, 16, 17, 22, 23, 24, 25];
+    console.log(getMinimumPayAmount(days)); // { '1': 2, '2': 2, '3': 2, '7': 7, '16': 2, '17': 2, '22': 7  }
 })();
