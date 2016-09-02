@@ -19,15 +19,6 @@
 
     let swapNodes = (n1, n2) => {
         // TODO: swap the node instead of Value
-        // let tempLeftChild = n1.leftChild;
-        // let tempRightChild = n1.rightChild;
-        // let tempParentNode = n1.parent;
-        // n1.leftChild = n2.leftChild;
-        // n1.rightChild = n2.rightChild;
-        // n1.parent = n2.parent;
-        // n2.leftChild = tempLeftChild;
-        // n2.rightChild = tempRightChild;
-        // n2.parent = tempParentNode;
         let tempValue = n1.value;
         n1.value = n2.value;
         n2.value = tempValue;
