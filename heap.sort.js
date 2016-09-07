@@ -29,6 +29,7 @@
         while (node.parent) {
             if (node.parent.value < node.value) {
                 swapNodes(node, node.parent);
+                node = node.parent;
             } else {
                 break;
             }
@@ -92,7 +93,7 @@
         }
     };
 
-    let array = [5, 4, 8, 3, 2, 1];
+    let array = [5, 4, 8, 3, 2, 1, 9];
     let result = [];
     let length = array.length;
     for (let index = 0; index < length; index++) {
