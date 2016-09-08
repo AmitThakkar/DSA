@@ -21,7 +21,6 @@
         }
         node.next = new Node(value, undefined);
     };
-
     LinkList.prototype.remove = function (value) {
         if (this.root && this.root.value == value) {
             this.root = this.root.next;
@@ -39,7 +38,6 @@
             }
         }
     };
-
     LinkList.prototype.merge = function (l1, l2) {
         function addAndMoveToNextNode(mergeList, node) {
             mergeList.add(node.value);
@@ -55,10 +53,10 @@
             if (!l1Node && !l2Node) {
                 break;
             }
-            while (lastValue == l1Node.value) {
+            while (l1Node && lastValue == l1Node.value) {
                 l1Node = l1Node.next;
             }
-            while (lastValue == l2Node.value) {
+            while (l2Node && lastValue == l2Node.value) {
                 l2Node = l2Node.next;
             }
             if (l1Node && l2Node) {
@@ -79,12 +77,29 @@
         }
         return mergeList;
     };
-
-    let linkList = new LinkList();
-    linkList.add(5);
-    linkList.add(4);
-    linkList.add(3);
-    linkList.add(2);
-    linkList.add(1);
-    linkList.remove(2);
+    LinkList.prototype.print = function () {
+        let result = [];
+        let node = undefined;
+        if (this.root) {
+            result.push(this.root.value);
+            node = this.root.next;
+        }
+        while (node) {
+            result.push(node.value);
+            node = node.next;
+        }
+        console.log(result);
+    };
+    let linkList1 = new LinkList();
+    let linkList2 = new LinkList();
+    for (let index = 0; index < 5; index++) {
+        linkList1.add(parseInt(Math.random() * 10));
+    }
+    for (let index = 0; index < 5; index++) {
+        linkList2.add(parseInt(Math.random() * 10));
+    }
+    linkList1.print();
+    linkList2.print();
+    let mergeLinkList = linkList1.merge(linkList1, linkList2);
+    mergeLinkList.print();
 })();
