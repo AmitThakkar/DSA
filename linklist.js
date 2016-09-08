@@ -38,7 +38,7 @@
             }
         }
     };
-    LinkList.prototype.merge = function (l1, l2) {
+    LinkList.prototype.merge = function (l1, l2) { // merge to sorted linkedin list into resultant sorted list
         function addAndMoveToNextNode(mergeList, node) {
             mergeList.add(node.value);
             lastValue = node.value;
