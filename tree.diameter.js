@@ -8,6 +8,17 @@
         this.right = right;
     }
 
+    function _height(node) {
+        let lHeight = 0, rHeight = 0;
+        if (node.left) {
+            lHeight = _height(node.left);
+        }
+        if (node.right) {
+            rHeight = _height(node.right);
+        }
+        return 1 + (lHeight > rHeight ? lHeight : rHeight);
+    }
+
     function Tree() {
         this.root = undefined;
     }
@@ -40,6 +51,14 @@
         }
     };
 
+    Tree.prototype.height = function () {
+        if (!this.root) {
+            return 0;
+        } else {
+            return _height(this.root);
+        }
+    };
+
     Tree.prototype.print = function () {
         if (!this.root) {
             return "Tree is Empty";
@@ -61,10 +80,11 @@
         return result;
     };
 
-    let array = [5, 4, 8, 3, 2, 1];
+    let array = [5, 4, 8, 3, 2, 1, 7, 9];
     let tree = new Tree();
     array.forEach((element) => {
         tree.add(element);
     });
     console.log(tree.print());
+    console.log(tree.height());
 })();
