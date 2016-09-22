@@ -19,6 +19,23 @@
         return 1 + (lHeight > rHeight ? lHeight : rHeight);
     }
 
+    function _max(n1, n2, n3) {
+        return (n1 > n2 ? (n1 > n3 ? n1 : n3) : (n2 > n3 ? n2 : n3));
+    }
+
+    function _diameter(node) {
+        let lHeight = 0, rHeight = 0, lDiameter = 0, rDiameter = 0;
+        if (node.left) {
+            lHeight = _height(node.left);
+            lDiameter = _diameter(node.left);
+        }
+        if (node.right) {
+            rHeight = _height(node.right);
+            rDiameter = _diameter(node.right);
+        }
+        return _max(1 + lHeight + rHeight, lDiameter, rDiameter);
+    }
+
     function Tree() {
         this.root = undefined;
     }
@@ -59,6 +76,13 @@
         }
     };
 
+    Tree.prototype.diameter = function () {
+        if (!this.root) {
+            return 0;
+        }
+        return _diameter(this.root)
+    };
+
     Tree.prototype.print = function () {
         if (!this.root) {
             return "Tree is Empty";
@@ -87,4 +111,5 @@
     });
     console.log(tree.print());
     console.log(tree.height());
+    console.log(tree.diameter());
 })();
