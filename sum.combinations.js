@@ -8,7 +8,6 @@
 
     function getAllCombinations(numbers, sum, result) {
         if (sum == 0) {
-            count++;
             results.push(result);
             return;
         } else if (sum < 0) {
