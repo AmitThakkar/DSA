@@ -7,7 +7,9 @@
         for (let index = 0; index < string.length && isBalance; index++) {
             switch (string[index]) {
                 case '(':
-                    stack.push('(');
+                case '{':
+                case '[':
+                    stack.push(string[index]);
                     break;
                 case ')':
                     temp = stack.pop();
@@ -15,17 +17,11 @@
                         isBalance = false;
                     }
                     break;
-                case '{':
-                    stack.push('{');
-                    break;
                 case '}':
                     temp = stack.pop();
                     if (temp != '{') {
                         isBalance = false;
                     }
-                    break;
-                case '[':
-                    stack.push('[');
                     break;
                 case ']':
                     temp = stack.pop();
@@ -35,7 +31,7 @@
                     break;
             }
         }
-        if(stack.length > 0) {
+        if (stack.length > 0) {
             isBalance = false;
         }
         return isBalance;
