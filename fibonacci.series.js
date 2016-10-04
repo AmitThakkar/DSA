@@ -26,4 +26,21 @@
     console.log(fibonacciLoop(1));
     console.log(fibonacciLoop(2));
     console.log(fibonacciLoop(5));
+
+    let fibonacciRecursion = (n) => {
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        } else if (n < 0) {
+            return -1;
+        } else {
+            return fibonacciRecursion(n - 1) + fibonacciRecursion(n - 2);
+        }
+    };
+    console.log(fibonacciRecursion(-2));
+    console.log(fibonacciRecursion(0));
+    console.log(fibonacciRecursion(1));
+    console.log(fibonacciRecursion(2));
+    console.log(fibonacciRecursion(5));
 })();
