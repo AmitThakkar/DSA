@@ -2,10 +2,6 @@
  * Created by amitthakkar on 15/11/16.
  */
 (() => {
-    let parent = (i) => {
-        return (i - 1) / 2;
-    };
-
     let left = (i) => {
         return (2 * i) + 1;
     };
@@ -21,13 +17,13 @@
     };
 
     let minHeapify = (array, parentIndex) => {
-        let leftValue = left(parentIndex);
-        let rightValue = right(parentIndex);
+        let leftIndex = left(parentIndex);
+        let rightIndex = right(parentIndex);
         let smallestIndex = parentIndex;
-        if (leftValue < array.length && array[leftValue] < array[smallestIndex])
-            smallestIndex = leftValue;
-        if (rightValue < array.length && array[rightValue] < array[smallestIndex])
-            smallestIndex = rightValue;
+        if (leftIndex < array.length && array[leftIndex] < array[smallestIndex])
+            smallestIndex = leftIndex;
+        if (rightIndex < array.length && array[rightIndex] < array[smallestIndex])
+            smallestIndex = rightIndex;
         if (smallestIndex != parentIndex) {
             swap(array, smallestIndex, parentIndex);
             minHeapify(array, smallestIndex);
@@ -35,7 +31,7 @@
     };
 
     let minHeap = (array) => {
-        let l = ((array.length - 1) / 2) - 1;
+        let l = ((array.length - 1) / 2);
         while (l >= 0) {
             minHeapify(array, l);
             l--;
