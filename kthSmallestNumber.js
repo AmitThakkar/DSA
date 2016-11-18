@@ -31,7 +31,7 @@
     };
 
     let minHeap = (array) => {
-        let l = ((array.length - 1) / 2);
+        let l = parseInt((array.length - 1) / 2);
         while (l >= 0) {
             minHeapify(array, l);
             l--;
