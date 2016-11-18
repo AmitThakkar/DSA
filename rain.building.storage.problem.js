@@ -20,9 +20,9 @@
  * */
 
 (() => {
-    // let buildingHeights = [6, 1, 3, 5, 9, 2, 8];
+    let buildingHeights = [6, 1, 3, 5, 9, 2, 8];
     // let buildingHeights = [5, 3, 7, 2, 6, 4, 5, 9, 1, 2];
-    let buildingHeights = [1,5,3,7,2];
+    // let buildingHeights = [1, 5, 3, 7, 2];
     /*
      * TOTAL store water
      * */
@@ -33,12 +33,12 @@
         return n1 > n2 ? n2 : n1;
     };
 
-    let maxHeightFromLeft = {}, maxHeightFromRight = {};
-    for (let i = 0; i < buildingHeights.length; i++) {
-        maxHeightFromLeft[i] = max(buildingHeights[i], (i != 0) ? maxHeightFromLeft[i - 1] : 0);
-    }
-    for (let i = buildingHeights.length - 1; i >= 0; i--) {
-        maxHeightFromRight[i] = max(buildingHeights[i], i < (buildingHeights.length - 1) ? maxHeightFromRight[i + 1] : 0);
+    let maxHeightFromLeft = [], maxHeightFromRight = [], totalBuildings = buildingHeights.length;
+    maxHeightFromLeft[0] = buildingHeights[0];
+    maxHeightFromRight[totalBuildings - 1] = buildingHeights[totalBuildings - 1];
+    for (let i = 1; i < totalBuildings; i++) {
+        maxHeightFromLeft[i] = max(buildingHeights[i], maxHeightFromLeft[i - 1]);
+        maxHeightFromRight[totalBuildings - i - 1] = max(buildingHeights[totalBuildings - i - 1], maxHeightFromRight[totalBuildings - i]);
     }
     let totalStorage = 0, maxStorageBetween2Building = 0, tempStorage = 0, leftBuilding = 0, rightBuilding = 0;
     for (let i = 0; i < buildingHeights.length; i++) {
