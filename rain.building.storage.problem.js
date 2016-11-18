@@ -21,7 +21,7 @@
     for (let i = buildingHeights.length - 1; i >= 0; i--) {
         maxHeightFromRight[i] = max(buildingHeights[i], i < (buildingHeights.length - 1) ? maxHeightFromRight[i + 1] : 0);
     }
-    let totalStorage = 0, maxStorageBetween2Building = 0, tempStorage = 0;
+    let totalStorage = 0, maxStorageBetween2Building = 0, tempStorage = 0, leftBuilding = 0, rightBuilding = 0;
     for (let i = 0; i < buildingHeights.length; i++) {
         let storeWater = min(maxHeightFromLeft[i], maxHeightFromRight[i]) - buildingHeights[i];
         totalStorage += storeWater;
@@ -30,8 +30,10 @@
             if (tempStorage > maxStorageBetween2Building) {
                 maxStorageBetween2Building = tempStorage;
                 tempStorage = 0;
+                leftBuilding = rightBuilding;
+                rightBuilding = i;
             }
         }
     }
-    console.log(totalStorage, maxStorageBetween2Building);
+    console.log(totalStorage, maxStorageBetween2Building, leftBuilding, rightBuilding);
 })();
