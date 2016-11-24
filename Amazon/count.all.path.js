@@ -24,7 +24,7 @@
     };
 
     let countAllPathOfMatrix = (matrix) => {
-        return getPath(matrix, 0, 0, [1]);
+        getPath(matrix, 0, 0, [1]);
     };
 
     let matrix = [], m = 3, n = 3, number = 1;
