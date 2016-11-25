@@ -24,7 +24,7 @@
     };
 
     let coins = [1, 2, 4, 5, 10];
-    console.log(getMinimumCoins(coins, 5, '')); // 1
+    console.log(getMinimumCoins(coins, 5)); // 1
     console.log(getMinimumCoins(coins, 8)); // 2
     console.log(getMinimumCoins(coins, 10)); // 1
     console.log(getMinimumCoins(coins, 11)); // 2
