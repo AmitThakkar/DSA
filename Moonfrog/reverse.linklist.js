@@ -37,21 +37,39 @@
         }
     };
 
-    function reverse(node, previousNode) {
+    function reverseWithRecursion(node, previousNode) {
         let nextNode = node.next;
         node.next = previousNode;
         if (!nextNode) {
             return node;
         }
-        return reverse(nextNode, node);
+        return reverseWithRecursion(nextNode, node);
     }
 
-
-    LinkedList.prototype.reverse = function () {
+    LinkedList.prototype.reverseWithRecursion = function () {
         if (!this.head) {
             console.log('LinkedList is still not initialized yet!');
         } else {
-            return reverse(this.head, undefined);
+            return reverseWithRecursion(this.head, undefined);
+        }
+    };
+
+    function reverseWithLoop(currentNode) {
+        let previousNode = undefined, nextNode;
+        while (currentNode) {
+            nextNode = currentNode.next;
+            currentNode.next = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+        return previousNode;
+    }
+
+    LinkedList.prototype.reverseWithLoop = function () {
+        if (!this.head) {
+            console.log('LinkedList is still not initialized yet!');
+        } else {
+            return reverseWithLoop(this.head);
         }
     };
 
@@ -61,6 +79,8 @@
         linkedList.add(value);
     });
     linkedList.print();
-    linkedList.head = linkedList.reverse();
+    linkedList.head = linkedList.reverseWithRecursion();
+    linkedList.print();
+    linkedList.head = linkedList.reverseWithLoop();
     linkedList.print();
 })();
