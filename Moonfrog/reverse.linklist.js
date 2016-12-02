@@ -38,12 +38,11 @@
     };
 
     function reverse(node, previousNode) {
-        if (!node.next) {
-            node.next = previousNode;
-            return node;
-        }
         let nextNode = node.next;
         node.next = previousNode;
+        if (!nextNode) {
+            return node;
+        }
         return reverse(nextNode, node);
     }
 
