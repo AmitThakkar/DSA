@@ -42,8 +42,9 @@
         node.next = previousNode;
         if (!nextNode) {
             return node;
+        } else {
+            return reverseWithRecursion(nextNode, node);
         }
-        return reverseWithRecursion(nextNode, node);
     }
 
     LinkedList.prototype.reverseWithRecursion = function () {
@@ -55,14 +56,15 @@
     };
 
     function reverseWithLoop(currentNode) {
-        let previousNode = undefined, nextNode;
-        while (currentNode) {
-            nextNode = currentNode.next;
+        let previousNode = undefined, nextNode = currentNode.next;
+        while (nextNode) {
             currentNode.next = previousNode;
             previousNode = currentNode;
             currentNode = nextNode;
+            nextNode = currentNode.next;
         }
-        return previousNode;
+        currentNode.next = previousNode;
+        return currentNode;
     }
 
     LinkedList.prototype.reverseWithLoop = function () {
