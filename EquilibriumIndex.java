@@ -36,9 +36,10 @@ public class EquilibriumIndex {
         equilibriumIndex.getEquilibriumIndexes(array);
     }
 
-    public void getEquilibriumIndexes(int[] array) {
-        ArrayList<Integer> result = new ArrayList<>();
-
+    public int getEquilibriumIndexes(int[] array) {
+        if(array == null || array.length == 0) {
+            return -1;
+        }
         Integer totalSum = 0;
 
         ArrayList<Integer> sumArrayList = new ArrayList<>();
@@ -51,13 +52,14 @@ public class EquilibriumIndex {
         }
         totalSum = sumArrayList.get(sumArrayList.size() - 1);
 
+        Integer found = -1;
         for (Integer index = 0; index < array.length; index++) {
             Integer rightSum = totalSum - sumArrayList.get(index);
             Integer leftSum = sumArrayList.get(index) - array[index];
             if (rightSum.equals(leftSum)) {
-                System.out.print(index + " ");
+                found = index;
             }
         }
-        return;
+        return found;
     }
 }
