@@ -52,14 +52,14 @@ public class EquilibriumIndex {
         }
         totalSum = sumArrayList.get(sumArrayList.size() - 1);
 
-        Integer found = -1;
+        Integer equilibriumIndex = -1;
         for (Integer index = 0; index < array.length; index++) {
             Integer rightSum = totalSum - sumArrayList.get(index);
             Integer leftSum = sumArrayList.get(index) - array[index];
             if (rightSum.equals(leftSum)) {
-                found = index;
+                equilibriumIndex = index;
             }
         }
-        return found;
+        return equilibriumIndex;
     }
 }
