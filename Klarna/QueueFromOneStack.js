@@ -29,6 +29,21 @@ class QueueFromOneStack {
         return this.stack.isEmpty();
     }
 
+    // Recursion with enqueue
+    /*enqueue(element) {
+        if (this.stack.isEmpty()) {
+            return this.stack.push(element);
+        }
+        let enqueueElement = this.dequeue();
+        this.enqueue(element);
+        this.stack.push(enqueueElement);
+    }
+
+    dequeue() {
+        return this.stack.pop();
+    }*/
+    
+    // Recursion with dequeue
     enqueue(element) {
         this.stack.push(element);
     }
