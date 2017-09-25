@@ -1,9 +1,16 @@
 function solution(N, S, T) {
     let shipArea = {};
+    if(S === "") {
+        return;
+    }
     let shipCoordinates = S.split(",");
     shipCoordinates.forEach((shipCoordinate, shipIndex) => {
         let shipIndexes = shipCoordinate.split(" ");
-
+        if(!shipIndexes) {
+            return;
+        }
+        //this logic will throw error
+        // because below line will return undefine
         let xIndex = shipIndexes[0].match(/(\d+)([A-Za-z]+)/);
         let startRow = xIndex[1];
         let startLetter = xIndex[2];
@@ -43,7 +50,7 @@ function solution(N, S, T) {
     return Object.keys(sunkShips).length + "," + Object.keys(hitShips).length;
 }
 
-result = solution(4, "1B 2C,2D 4D", "2B 2D 3D 4D 4A");
+result = solution(1, "1B 2C,2D 4D", "2B 2D 3D 4D 4A");
 console.log(result); // "1,1"
 result = solution(4, '1A 1B,2C 2C', '1B');
 console.log(result); // "0,1"
